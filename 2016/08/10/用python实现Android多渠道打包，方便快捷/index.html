@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>用python实现Android多渠道打包，方便快捷 | Carrot Fishing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="分享经验共同进步总结了一下网上的别人的方法，成功实现了多渠道打包，把我的思路及方法写下来，仅供参考。
+工具环境
+Android studio 2.2 prv3
+python 3.5.2 Windows x86-64
+
+使用python的好处
+支持META-INF渠道识别
+极速生成渠道包
+使用简单不易出错一：Android在代码中获取渠道号
+
+首先要将下面代码写入需要渠道号的类中，运行获取app-d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用python实现Android多渠道打包，方便快捷">
+<meta property="og:url" content="http://flayone.github.io/2016/08/10/用python实现Android多渠道打包，方便快捷/index.html">
+<meta property="og:site_name" content="Carrot Fishing">
+<meta property="og:description" content="分享经验共同进步总结了一下网上的别人的方法，成功实现了多渠道打包，把我的思路及方法写下来，仅供参考。
+工具环境
+Android studio 2.2 prv3
+python 3.5.2 Windows x86-64
+
+使用python的好处
+支持META-INF渠道识别
+极速生成渠道包
+使用简单不易出错一：Android在代码中获取渠道号
+
+首先要将下面代码写入需要渠道号的类中，运行获取app-d">
+<meta property="og:image" content="http://i.imgur.com/Y2bIGdS.png">
+<meta property="og:image" content="http://i.imgur.com/vYiSTt9.png">
+<meta property="og:updated_time" content="2016-11-25T03:01:33.577Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用python实现Android多渠道打包，方便快捷">
+<meta name="twitter:description" content="分享经验共同进步总结了一下网上的别人的方法，成功实现了多渠道打包，把我的思路及方法写下来，仅供参考。
+工具环境
+Android studio 2.2 prv3
+python 3.5.2 Windows x86-64
+
+使用python的好处
+支持META-INF渠道识别
+极速生成渠道包
+使用简单不易出错一：Android在代码中获取渠道号
+
+首先要将下面代码写入需要渠道号的类中，运行获取app-d">
+  
+    <link rel="alternative" href="/atom.xml" title="Carrot Fishing" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/11844888?v=3&u=c863a339b87d7a13ec318863f6006072d6bd522e&s=140">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars3.githubusercontent.com/u/11844888?v=3&amp;u=c863a339b87d7a13ec318863f6006072d6bd522e&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YaYu Li</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">let&#39;s do it</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/flayone" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/p/1005051572836850/home?from=page_100505&mod=TAB&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/li-ya-yu-33" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/文章/" style="font-size: 10px;">文章</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">android程序猿一只，求勾搭~</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">YaYu Li</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars3.githubusercontent.com/u/11844888?v=3&amp;u=c863a339b87d7a13ec318863f6006072d6bd522e&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YaYu Li</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">let&#39;s do it</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/flayone" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/p/1005051572836850/home?from=page_100505&mod=TAB&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/li-ya-yu-33" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-用python实现Android多渠道打包，方便快捷" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/10/用python实现Android多渠道打包，方便快捷/" class="article-date">
+  	<time datetime="2016-08-10T08:50:29.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用python实现Android多渠道打包，方便快捷
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="u5206_u4EAB_u7ECF_u9A8C_u5171_u540C_u8FDB_u6B65"><a href="#u5206_u4EAB_u7ECF_u9A8C_u5171_u540C_u8FDB_u6B65" class="headerlink" title="分享经验共同进步"></a>分享经验共同进步</h2><p>总结了一下网上的别人的方法，成功实现了多渠道打包，把我的思路及方法写下来，仅供参考。</p>
+<h3 id="u5DE5_u5177_u73AF_u5883"><a href="#u5DE5_u5177_u73AF_u5883" class="headerlink" title="工具环境"></a>工具环境</h3><ul>
+<li>Android studio 2.2 prv3</li>
+<li><a href="https://www.python.org/downloads/windows/" target="_blank" rel="external">python 3.5.2 Windows x86-64</a></li>
+</ul>
+<h3 id="u4F7F_u7528python_u7684_u597D_u5904"><a href="#u4F7F_u7528python_u7684_u597D_u5904" class="headerlink" title="使用python的好处"></a>使用python的好处</h3><ul>
+<li>支持META-INF渠道识别</li>
+<li>极速生成渠道包</li>
+<li>使用简单不易出错<h3 id="u4E00_uFF1AAndroid_u5728_u4EE3_u7801_u4E2D_u83B7_u53D6_u6E20_u9053_u53F7"><a href="#u4E00_uFF1AAndroid_u5728_u4EE3_u7801_u4E2D_u83B7_u53D6_u6E20_u9053_u53F7" class="headerlink" title="一：Android在代码中获取渠道号"></a>一：Android在代码中获取渠道号</h3></li>
+</ul>
+<p>首先要将下面代码写入需要渠道号的类中，运行获取app-debug.apk包。此段代码的大致意思就是获取每个渠道包下META-INF中的渠道号</p>
+<pre><code>//获取渠道名称 channel表示渠道
+    channel = getChannelFromApk(this, &quot;channel-&quot;);
+    if (StringUtils.isEmpty(channel)) {
+        channel = &quot;tengxun&quot;;
+    }
+    if (DEBUG) {
+        Toast.makeText(this, &quot;当前渠道:&quot; + channel, Toast.LENGTH_SHORT).show();
+    }
+
+/**
+ * 从apk中获取版本信息
+ * @param context
+ * @param channelPrefix 渠道前缀
+ * @return
+ */
+public static String getChannelFromApk(Context context, String channelPrefix) {
+    //从apk包中获取
+    ApplicationInfo appinfo = context.getApplicationInfo();
+    String sourceDir = appinfo.sourceDir;
+    //默认放在meta-inf/里， 所以需要再拼接一下
+    String key = &quot;META-INF/&quot; + channelPrefix;
+    String ret = &quot;&quot;;
+    ZipFile zipfile = null;
+    try {
+        zipfile = new ZipFile(sourceDir);
+        Enumeration&lt;?&gt; entries = zipfile.entries();
+        while (entries.hasMoreElements()) {
+            ZipEntry entry = ((ZipEntry) entries.nextElement());
+            String entryName = entry.getName();
+            if (entryName.startsWith(key)) {
+                ret = entryName;
+                break;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if (zipfile != null) {
+            try {
+                zipfile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    String[] split = ret.split(channelPrefix);
+    String channel = &quot;&quot;;
+    if (split != null &amp;&amp; split.length &gt;= 2) {
+        channel = ret.substring(key.length());
+    }
+    return channel;
+}
+</code></pre><h3 id="u4E8C_uFF1A_u672C_u5730_u7F16_u5199Python_u4EE3_u7801"><a href="#u4E8C_uFF1A_u672C_u5730_u7F16_u5199Python_u4EE3_u7801" class="headerlink" title="二：本地编写Python代码"></a>二：本地编写Python代码</h3><p>本地新建channels文件夹，再新建channels-config.ini和build-channels-script.py文件</p>
+<p>channels-config.ini文件是多渠道的配置文件，依个人情况需自行改动，代码如下，<strong>注意：apk.path后面的是正斜杠</strong></p>
+<pre><code>[Build-Config]
+apk.path = /workCode/Demo/app/build/outputs/apk/app-debug.apk
+channel.prefix = channel-
+channel.list = qihu360,baidu,tengxun,wandoujia
+</code></pre><p>build-channels-script.py文件是生成多渠道包文件，代码如下， <strong>Python3.0之前的版本代码会有区别，本代码为目前最新版</strong></p>
+<pre><code>import zipfile
+import shutil
+import os
+import configparser
+
+#读取配置文件
+config = configparser.ConfigParser()
+config.read(&quot;channels-config.ini&quot;)
+#apk路径
+apk_path = config.get(&quot;Build-Config&quot;, &quot;apk.path&quot;)
+print (&quot;src apk path=&quot; + apk_path)
+#渠道识别前缀
+channel_prefix = config.get(&quot;Build-Config&quot;, &quot;channel.prefix&quot;)
+print (&quot;channel prefix=&quot; + channel_prefix)
+#渠道列表
+channel_list = config.get(&quot;Build-Config&quot;, &quot;channel.list&quot;)
+print (&quot;channel list=&quot; + channel_list)
+#解析渠道，生成渠道数组
+channel_array = channel_list.split(&apos;,&apos;)
+
+# 空文件 便于写入此空文件到apk包中作为channel文件
+src_temp_file = &apos;temp_.txt&apos;
+# 创建一个空文件（不存在则创建）
+f = open(src_temp_file, &apos;w&apos;)
+f.close()
+
+
+src_apk = apk_path
+# file name (with extension)
+src_apk_file_name = os.path.basename(src_apk)
+# 分割文件名与后缀
+temp_list = os.path.splitext(src_apk_file_name)
+# name without extension
+src_apk_name = temp_list[0]
+# 后缀名，包含.   例如: &quot;.apk &quot;
+src_apk_extension = temp_list[1]
+
+# 创建生成目录,与文件名相关
+output_dir = &apos;apks_&apos; + src_apk_name + &apos;/&apos;
+# 目录不存在则创建
+if not os.path.exists(output_dir):
+os.mkdir(output_dir)
+
+# 遍历渠道号并创建对应渠道号的apk文件
+for line in channel_array:
+# 获取当前渠道号，因为从渠道文件中获得带有\n,所有strip一下
+target_channel = line.strip()
+# 拼接对应渠道号的apk
+target_apk = output_dir + src_apk_name + &quot;-&quot; + target_channel + src_apk_extension
+# 拷贝建立新apk
+shutil.copy(src_apk,  target_apk)
+# zip获取新建立的apk文件
+zipped = zipfile.ZipFile(target_apk, &apos;a&apos;, zipfile.ZIP_DEFLATED)
+
+# 初始化渠道信息
+target_channel_file = &quot;META-INF/&quot; + channel_prefix + &quot;{channel}&quot;.format(channel = target_channel)
+# 写入渠道信息
+zipped.write(src_temp_file, target_channel_file)
+# 关闭zip流
+zipped.close()
+
+#删除临时文件
+os.remove(src_temp_file)
+</code></pre><h3 id="u4E09_uFF1A_u8FD0_u884Cbuild-channels-script-py_u5B9E_u73B0"><a href="#u4E09_uFF1A_u8FD0_u884Cbuild-channels-script-py_u5B9E_u73B0" class="headerlink" title="三：运行build-channels-script.py实现"></a>三：运行build-channels-script.py实现</h3><p>python build-channels-script.py ，运行成功后会在当前目录下生成了一个apks_{apk file name}的文件夹，说明打包成功，速度非常快~</p>
+<p><img src="http://i.imgur.com/Y2bIGdS.png" alt=""><br><img src="http://i.imgur.com/vYiSTt9.png" alt=""></p>
+<h3 id="u53C2_u8003_u94FE_u63A5"><a href="#u53C2_u8003_u94FE_u63A5" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://github.com/pengjianbo/MutiChannelPackup" target="_blank" rel="external">多种版本多渠道打包方法-https://github.com/pengjianbo/MutiChannelPackup</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/24/无意间发现Google官方统计中国翻墙用户数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          无意间发现Google官方统计中国翻墙用户数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/30/onekeyshare如何分享链接到微信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">onekeyshare如何分享链接到微信</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="用python实现Android多渠道打包，方便快捷" data-title="用python实现Android多渠道打包，方便快捷" data-url="http://flayone.github.io/2016/08/10/用python实现Android多渠道打包，方便快捷/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"carrotfishing"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 YaYu Li
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
